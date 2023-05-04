@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Student</title>
+</head>
+<body>
+<h1>Add Student</h1>
+<form th:action="@{/student/addStudentPage}" th:object="${StudentModel}" method="post">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" required/>
+    </div>
+    <div>
+        <label for="numberPhone">Phone Number:</label>
+        <input type="text" id="numberPhone" th:field="*{numberPhone}" required/>
+    </div>
+    <div>
+        <label for="dateOfBirth">Date of Birth:</label>
+        <input type="date" id="dateOfBirth" th:field="*{dateOfBirth}" required/>
+    </div>
+    <div>
+        <label for="idCode">ID Code:</label>
+        <input type="text" id="idCode" th:field="*{idCode}" required/>
+    </div>
+    <div>
+        <label for="teacherId">Teacher ID:</label>
+        <input type="number" id="teacherId" th:field="*{teacherId}" required/>
+    </div>
+    <div>
+        <button type="submit">Add Student</button>
+    </div>
+</form>
+</body>
+</html>

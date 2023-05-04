@@ -1,0 +1,387 @@
+.navbar {
+    width: 100vw;
+}
+
+.navbarMenu {
+    width: 100vw;
+}
+
+.love .row .col {
+    border: 10px solid white;
+    transform: scale(1);
+    justify-content: center;
+    /* flex: 1 1 100px; */
+    /* margin: 2px; */
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+}
+
+a {
+    color: black;
+}
+
+.colC {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbarMenu .row {
+    width: 100vw;
+    height: 200px;
+}
+
+.navbarMenu .col {
+    align-items: center;
+}
+
+body {
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* align-items: center; */
+    height: 100vh;
+}
+
+.colText {
+    font-size: larger;
+    font-weight: bold;
+    font-size: 30px;
+    min-width: 550px;
+}
+
+.love .row .col {
+    width: 400px;
+    height: 400px;
+}
+
+.colC {
+    width: 300px;
+    height: 300px;
+}
+.navbarMenu {
+    justify-content: center;
+}
+
+.nav-link {
+    color: red;
+    margin-left: 15px;
+    position: relative;
+    text-decoration: none;
+    color: #222;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+
+.nav-link::before,
+.nav-link::after {
+    content: "";
+    position: absolute;
+    height: 3px;
+    width: 0;
+    background-color: red;
+    transition: 0.5s;
+}
+:root {
+    --bs-dark: #000000;
+    --link: red;
+}
+
+#navbar {
+    box-shadow: 0px -5px 10px var(--bs-dark), 0px 5px 10px var(--bs-dark);
+}
+
+.ul li a {
+    color: var(--link);
+}
+.nav-link::after {
+    left: 0;
+    bottom: -3px;
+}
+
+.nav-link::before {
+    right: 0;
+    top: -3px;
+}
+
+.nav-link:hover::after,
+.nav-link:hover::before {
+    width: 100%;
+}
+
+#row img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50px;
+    object-fit: fit;
+}
+
+.colC {
+    box-shadow: 10px 10px 20px black;
+}
+
+.colC:hover {
+    box-shadow: none;
+}
+
+@media screen and (min-width:1009px) {
+    .navbarMenu {
+        min-width: 100vw;
+    }
+
+    .navbarMenu .row {
+        min-width: 100vw;
+        height: 200px;
+    }
+
+    .colCont {
+        width: 400px;
+        height: 400px;
+    }
+
+    .colText {
+        font-size: 30px;
+        min-width: 550px;
+    }
+
+    .jordanLogo {
+        width: 80px;
+    }
+
+    .mutahLogo {
+        width: 80px;
+    }
+}
+
+@media screen and (min-width:807px) and (max-width:1008px) {
+    .colText {
+        font-size: 25px;
+        min-width: 500px;
+    }
+
+    .jordanLogo {
+        width: 80px;
+    }
+
+    .mutahLogo {
+        width: 80px;
+    }
+
+    .love .row {
+        justify-content: center;
+        /* margin: 2px; */
+    }
+}
+
+@media screen and (min-width:717px) and (max-width:806px) {
+    .colText {
+        min-width: 400px;
+        font-size: 20px;
+    }
+
+    .jordanLogo {
+        width: 70px;
+    }
+
+    .mutahLogo {
+        width: 70px;
+    }
+
+    .love .row {
+        justify-content: center;
+        /* margin: 2px; */
+    }
+}
+
+@media screen and (min-width:617px) and (max-width:716px) {
+    .colText {
+        min-width: 400px;
+        font-size: 20px;
+    }
+
+    .jordanLogo {
+        width: 60px;
+    }
+
+    .mutahLogo {
+        width: 60px;
+    }
+
+    .love .row {
+        justify-content: center;
+        /* margin: 2px; */
+    }
+}
+
+@media screen and (min-width:539px) and (max-width:616px) {
+    .colText {
+        min-width: 230px;
+        font-size: 15px;
+    }
+
+    .jordanLogo {
+        width: 60px;
+    }
+
+    .mutahLogo {
+        width: 60px;
+    }
+
+    .love .row {
+        justify-content: center;
+        /* margin: 2px; */
+    }
+}
+
+@media screen and (min-width:430px) and (max-width:539px) {
+    .navbarMenu .row {
+        height: 100px;
+    }
+
+    .colText {
+        min-width: 200px;
+        font-size: 15px;
+    }
+
+    .jordanLogo {
+        width: 60px;
+    }
+
+    .mutahLogo {
+        width: 60px;
+    }
+
+    .love .row {
+        justify-content: center;
+        /* margin: 2px; */
+    }
+}
+
+@media screen and (min-width:367px) and (max-width:430px) {
+    .colText {
+        min-width: 240px;
+        font-size: 13px;
+    }
+
+    .jordanLogo {
+        width: 40px;
+    }
+
+    .mutahLogo {
+        width: 40px;
+    }
+
+    .navbarMenu .row {
+        height: 100px;
+    }
+
+    .love .row .col {
+        transform: scale(0.9);
+        /* margin: 2px; */
+    }
+
+    .love .row {
+        justify-content: center;
+        /* margin: 2px; */
+    }
+}
+
+@media screen and (min-width:326px) and (max-width:368px) {
+    .colText {
+        min-width: 200px;
+        font-size: 10px;
+    }
+
+    .jordanLogo {
+        width: 35px;
+    }
+
+    .mutahLogo {
+        width: 35px;
+    }
+
+    .navbarMenu .row {
+        height: 100px;
+    }
+
+    .love .row {
+        justify-content: center;
+        /* margin: 2px; */
+    }
+    .love .row .col {
+        height: 300px;
+        transform: scale(0.8);
+        /* margin: 2px; */
+    }
+}
+
+@media screen and (max-width:326px)and (min-width:301px) {
+    .colText {
+        min-width: 120px;
+        font-size: 8px;
+    }
+
+    .jordanLogo {
+        width: 35px;
+    }
+
+    .mutahLogo {
+        width: 35px;
+    }
+
+    .navbarMenu .row {
+        height: 100px;
+    }
+
+    .love .row {
+        justify-content: center;
+        /* margin: 2px; */
+    }
+
+    .love .row .col {
+        height: 250px;
+        transform: scale(0.6);
+        /* margin: 2px; */
+    }
+}
+
+@media screen and (max-width:301px) {
+    .colText {
+        min-width: 100px;
+        font-size: 6px;
+    }
+
+    .jordanLogo {
+        width: 20px;
+    }
+
+    .mutahLogo {
+        width: 20px;
+    }
+
+    .navbarMenu .row {
+        height: 100px;
+    }
+
+    .love .row {
+        justify-content: center;
+        /* margin: 2px; */
+    }
+
+    .love .row .col {
+        height: 200px;
+        transform: scale(0.6);
+        /* margin: 2px; */
+    }
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>login</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+</head>
+<body>
+<nav class="navbar navbar-light bg-dark navbarLogin">
+        <div class="col d-flex justify-content-center text-center colText text-white" style="flex:5">
+            MUTAH UNIVERSITY <br> Electronic Journals and Databases <br> Annual Subscription
+        </div>
+</nav>
+<div class="container  loginForm ">
+    <form th:action="@{/student/addStudentPage}" class="form-signin" method="get" >
+        <div class="text-center mb-5">
+            <h1 class="h3 mb-3 font-weight-normal textAlert">Login</h1>
+        </div>
+        <div class="form-label-group">
+            <input type="text" name="username" value="" id="inputUsername" class="form-control userName"
+                   placeholder="Username" required autofocus>
+        </div>
+        <div class="form-label-group mt-3">
+            <input type="password" name="password" value="" id="inputPassword" class="form-control password"
+                   placeholder="Password" required>
+        </div>
+        <div class="collapse alert-danger" id="collapseExample">
+            Error in password Or username
+        </div>
+        <button class="upB" type="submit" name="login" data-toggle="collapse" href="#collapseExample">login</button>
+    </form>
+</div>
+<script src="jsFile/login.js"></script>
+</body>
+</html>

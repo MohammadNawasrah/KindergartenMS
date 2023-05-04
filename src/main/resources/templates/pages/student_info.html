@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List of Objects</title>
+</head>
+<body>
+<h1>List of Objects</h1>
+<table>
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>name student</th>
+        <th>numberPhone</th>
+        <th>dateOfBirth</th>
+        <th>idCode</th>
+        <th>teacherId</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="object : ${student}">
+        <td th:text="${object.getId()}"></td>
+        <td th:text="${object.getName()}"></td>
+        <td th:text="${object.getNumberPhone()}"></td>
+        <td th:text="${object.getDateOfBirth()}"></td>
+        <td th:text="${object.getIdCode()}"></td>
+        <td th:text="${object.getTeacherId()}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
