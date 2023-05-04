@@ -21,5 +21,9 @@ public class StudentService {
         return studentRepository.findAll();
 
     }
+    public void deleteStudent() {
+        studentRepository.deleteLastStudent();
+
+    }
 
 }

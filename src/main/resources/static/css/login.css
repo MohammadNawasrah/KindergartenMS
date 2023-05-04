@@ -1,0 +1,566 @@
+:root {
+    --textNav--size: 30px;
+}
+
+.navbarLogin {
+    justify-content: center;
+}
+
+.navbarLogin .col {
+    align-items: center;
+}
+
+body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100vh;
+    background-color: darkgrey;
+    /* align-items: center; */
+}
+
+.colText {
+    font-weight: bold;
+}
+
+/* .userName:hover,
+.password:hover {
+    border-top: none;
+    /* border: 2px black solid; */
+/* outline: none; */
+/* } */
+
+.loginForm {
+    background-color: rgba(0, 0, 0, 0.501);
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 30px;
+    box-shadow: 10px 10px 10px black;
+}
+
+.textContainer .row {
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+}
+
+.textAlert {
+    color: silver;
+    /* fill: transparent; */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.userName,
+.password {
+    text-align: center;
+    caret-color: red;
+    border-radius: 50px;
+    box-shadow: 3px 3px 8px black;
+}
+
+.upB {
+    cursor: pointer;
+    width: 120px;
+    height: 30px;
+    position: relative;
+    background-color: transparent;
+    outline: none;
+    font-weight: bold;
+    border: 2px solid white;
+    border-radius: 0px;
+    margin-top: 15px;
+    color: transparent;
+    transition: color 200ms 400ms, border-radius 200ms 500ms;
+
+}
+
+.upB:hover {
+    color: white;
+    border-radius: 30px;
+}
+
+.upB::before {
+    content: "login";
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    text-align: center;
+    white-space: pre;
+    top: -5px;
+    left: -5px;
+    width: 125px;
+    height: 30px;
+    background-color: rgb(84, 84, 84);
+    transition: 120ms 3s width;
+    transition: width 120ms 300ms, height 300ms, color 300ms 200ms;
+    
+}
+
+.upB::after {
+    content: "";
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    text-align: center;
+    white-space: pre;
+    top: 0px;
+    left: -1px;
+    width: 0px;
+    height: 0px;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.486);
+    box-shadow: 5px 5px 10px black;
+    transition: width 120ms 300ms, height 300ms, box-shadow 120ms;
+
+    overflow: hidden;
+}
+
+.upB:hover::after {
+    width: 116px;
+    height: 25px;
+}
+
+.upB:focus::after {
+    box-shadow: 1px 1px 3px black, -1px -1px 3px black;
+}
+
+.upB:hover::before {
+    color: transparent;
+    width: 0px;
+    height: 5px;
+}
+
+.collapse {
+    width: 250px;
+    text-align: center;
+    background-color: rgb(248, 215, 218);
+    height: fit-content;
+    margin-top: 12px;
+    border-radius: 20px;
+}
+
+@media screen and (min-width:1009px) {
+    .textContainer .row {
+        font-size: 30px;
+        max-height: 40px;
+    }
+
+    .navbarLogin {
+        min-width: 100vw;
+    }
+
+    .navbarLogin .row {
+        min-width: 100vw;
+        height: 200px;
+    }
+
+    .colText {
+        font-size: 30px;
+        min-width: 550px;
+    }
+
+    .jordanLogo {
+        width: 80px;
+    }
+
+    .mutahLogo {
+        width: 80px;
+    }
+
+    .loginForm {
+        max-width: 500px;
+        max-height: 400px;
+        height: 400px;
+        flex: 200px;
+        margin-top: 20px;
+    }
+}
+
+@media screen and (min-width:807px) and (max-width:1008px) {
+    .textContainer .row {
+        font-size: 30px;
+        max-height: 40px;
+    }
+
+    .navbarLogin {
+        min-width: 100vw;
+    }
+
+    .navbarLogin .row {
+        min-width: 100vw;
+        height: 200px;
+    }
+
+    .buttonForm {
+        height: 40px;
+    }
+
+    .loginForm {
+        max-width: 500px;
+        max-height: 400px;
+        height: 400px;
+        flex: 200px;
+        margin-top: 20px;
+    }
+
+    .colText {
+        font-size: 25px;
+        min-width: 500px;
+    }
+
+    .jordanLogo {
+        width: 80px;
+    }
+
+    .mutahLogo {
+        width: 80px;
+    }
+}
+
+@media screen and (min-width:717px) and (max-width:806px) {
+    .textContainer .row {
+        font-size: 30px;
+        max-height: 40px;
+    }
+
+    .navbarLogin {
+        min-width: 100vw;
+    }
+
+    .navbarLogin .row {
+        min-width: 100vw;
+        height: 200px;
+    }
+
+    .buttonForm {
+        height: 40px;
+    }
+
+    .loginForm {
+        max-width: 500px;
+        max-height: 400px;
+        height: 400px;
+        flex: 200px;
+        margin-top: 20px;
+    }
+
+    .colText {
+        min-width: 400px;
+        font-size: 20px;
+    }
+
+    .jordanLogo {
+        width: 70px;
+    }
+
+    .mutahLogo {
+        width: 70px;
+    }
+}
+
+@media screen and (min-width:617px) and (max-width:716px) {
+    .textContainer .row {
+        font-size: 30px;
+        max-height: 40px;
+    }
+
+    .navbarLogin {
+        min-width: 100vw;
+    }
+
+    .navbarLogin .row {
+        min-width: 100vw;
+        height: 200px;
+    }
+
+    .buttonForm {
+        height: 40px;
+    }
+
+    .loginForm {
+        max-width: 500px;
+        max-height: 400px;
+        height: 400px;
+        flex: 200px;
+        margin-top: 20px;
+    }
+
+    .colText {
+        min-width: 400px;
+        font-size: 20px;
+    }
+
+    .jordanLogo {
+        width: 60px;
+    }
+
+    .mutahLogo {
+        width: 60px;
+    }
+}
+
+@media screen and (min-width:539px) and (max-width:616px) {
+    .textContainer .row {
+        font-size: 30px;
+        max-height: 40px;
+    }
+
+    .navbarLogin {
+        min-width: 100vw;
+    }
+
+    .buttonForm {
+        height: 40px;
+    }
+
+    .loginForm {
+        max-width: 500px;
+        max-height: 400px;
+        height: 400px;
+        flex: 200px;
+        margin-top: 20px;
+    }
+
+    .navbarLogin .row {
+        min-width: 100vw;
+        height: 200px;
+    }
+
+    .colText {
+        min-width: 200px;
+        font-size: 20px;
+    }
+
+    .jordanLogo {
+        width: 60px;
+    }
+
+    .mutahLogo {
+        width: 60px;
+    }
+}
+
+@media screen and (min-width:430px) and (max-width:539px) {
+    .textContainer .row {
+        font-size: 30px;
+        max-height: 40px;
+    }
+
+    .navbarLogin {
+        min-width: 100vw;
+    }
+
+    .buttonForm {
+        height: 40px;
+    }
+
+    .navbarLogin .row {
+        height: 100px;
+    }
+
+    .colText {
+        min-width: 200px;
+        font-size: 15px;
+    }
+
+    .jordanLogo {
+        width: 60px;
+    }
+
+    .mutahLogo {
+        width: 60px;
+    }
+
+    .loginForm {
+        max-height: 400px;
+        height: 400px;
+        flex: 200px;
+        margin-top: 20px;
+        max-width: 300px;
+    }
+}
+
+@media screen and (min-width:367px) and (max-width:430px) {
+    .textContainer .row {
+        font-size: 20px;
+        max-height: 40px;
+    }
+
+    .navbarLogin {
+        min-width: 100vw;
+    }
+
+    .buttonForm {
+        height: 40px;
+    }
+
+    .colText {
+        min-width: 240px;
+        font-size: 13px;
+    }
+
+    .jordanLogo {
+        width: 40px;
+    }
+
+    .mutahLogo {
+        width: 40px;
+    }
+
+    .loginForm {
+        max-height: 400px;
+        height: 300px;
+        flex: 200px;
+        margin-top: 20px;
+        max-width: 300px;
+    }
+
+    .navbarLogin .row {
+        height: 100px;
+    }
+}
+
+@media screen and (min-width:326px) and (max-width:368px) {
+    .textContainer .row {
+        font-size: 20px;
+        max-height: 40px;
+    }
+
+    .navbarLogin {
+        min-width: 100vw;
+    }
+
+    .buttonForm {
+        height: 40px;
+    }
+
+    .colText {
+        min-width: 200px;
+        font-size: 10px;
+    }
+
+    .jordanLogo {
+        width: 35px;
+    }
+
+    .mutahLogo {
+        width: 35px;
+    }
+
+    .loginForm {
+        max-height: 400px;
+        height: 300px;
+        flex: 200px;
+        margin-top: 20px;
+        max-width: 300px;
+    }
+
+    .navbarLogin .row {
+        height: 100px;
+    }
+}
+
+@media screen and (max-width:326px)and (min-width:301px) {
+    .textContainer .row {
+        font-size: 15px;
+        max-height: 40px;
+    }
+
+    .navbarLogin {
+        min-width: 100vw;
+    }
+
+    .buttonForm {
+        height: 40px;
+    }
+
+    .colText {
+        min-width: 100px;
+        font-size: 10px;
+    }
+
+    .jordanLogo {
+        width: 35px;
+    }
+
+    .mutahLogo {
+        width: 35px;
+    }
+
+    .loginForm {
+        max-height: 400px;
+        height: 300px;
+        flex: 200px;
+        margin-top: 20px;
+        max-width: 250px;
+    }
+
+    .navbarLogin .row {
+        height: 100px;
+    }
+}
+
+@media screen and (max-width:301px) {
+    .textContainer .row {
+        font-size: 10px;
+        max-height: 40px;
+    }
+
+    .navbarLogin {
+        min-width: 100vw;
+    }
+
+    .buttonForm {
+        height: 40px;
+    }
+
+    .colText {
+        min-width: 100px;
+        font-size: 6px;
+    }
+
+    .jordanLogo {
+        width: 20px;
+    }
+
+    .mutahLogo {
+        width: 20px;
+    }
+
+    .loginForm {
+        max-height: 400px;
+        height: 300px;
+        margin-top: 20px;
+        max-width: 180px;
+    }
+
+    .loginForm h1 {
+        font-size: 25px;
+    }
+
+    .userName,
+    #inputPassword {
+        width: 150px;
+        height: 30px;
+        font-size: 10px;
+    }
+
+    .loginForm button {
+        width: 70px;
+        height: 30px;
+        font-size: 10px;
+    }
+
+    .navbarLogin .row {
+        height: 100px;
+    }
+}

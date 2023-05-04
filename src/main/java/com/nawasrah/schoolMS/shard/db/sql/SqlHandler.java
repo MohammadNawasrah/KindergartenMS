@@ -67,10 +67,22 @@ public class SqlHandler {
 
     public boolean insertData(String tableName, String values) throws SQLException {
         String query = "INSERT INTO " + tableName + " VALUES (" + values + ")";
+
         try {
             Statement stmt = dbConnectionImp.connection().createStatement();
             return stmt.execute(query);
         } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    public boolean deleteData(String tableName) throws SQLException {
+        try {
+            String sql = "DELETE FROM " +tableName +" WHERE id= (SELECT  MAX(id) FROM "+tableName+")";
+            Statement stmt = dbConnectionImp.connection().createStatement();
+            return stmt.execute(sql);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
             return false;
         }
     }

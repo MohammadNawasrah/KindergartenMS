@@ -12,11 +12,11 @@ import java.util.Date;
 @Setter
 @ToString
 public class StudentModel {
-    private Long id;
-    private String name;
-    private String numberPhone;
-    private LocalDate dateOfBirth;
-    private String idCode;
-    private int teacherId;
+    public Long id;
+    public String name;
+    public String numberPhone;
+    public String dateOfBirth;
+    public String idCode;
+    public int teacherId;
 
 }

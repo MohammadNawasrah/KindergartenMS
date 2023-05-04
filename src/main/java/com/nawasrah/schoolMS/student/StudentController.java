@@ -1,13 +1,8 @@
 package com.nawasrah.schoolMS.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-
-import java.time.LocalDate;
-
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @RestController
@@ -15,20 +10,50 @@ import java.util.List;
 public class StudentController {
     @Autowired
     private StudentService studentService;
+
     @GetMapping("/createTableStudent")
-    String createTable(){
+    String createTable() {
         return "Done create table ";
     }
-    @GetMapping("/addStudent")
-    String insertNewS(){
-        StudentModel studentModel=new StudentModel();
-        studentModel.setName("mohammad al nawasrah");
-        studentModel.setNumberPhone("0788375406");
-        studentModel.setTeacherId(10);
-        studentModel.setIdCode("101010");
-        studentModel.setDateOfBirth(LocalDate.of(2000,8,5));
-        return studentService.addNewS(studentModel);
+
+    @GetMapping("/")
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/index");
+        return modelAndView;
     }
+
+    @GetMapping("/student_info")
+    public ModelAndView studentInfo() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/student_info");
+        modelAndView.addObject("student", studentService.getAllStudent());
+        return modelAndView;
+    }
+
+    @GetMapping("/addStudentPage")
+    public ModelAndView addStudentPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/add_student");
+        StudentModel mo = new StudentModel();
+        modelAndView.addObject("StudentModel", mo);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/addStudentPage", method = RequestMethod.POST)
+    public ModelAndView addStudent(@ModelAttribute("StudentModel") StudentModel studentForm) {
+        StudentModel student = new StudentModel();
+        student.setName(studentForm.getName());
+        student.setNumberPhone(studentForm.getNumberPhone());
+        student.setDateOfBirth(studentForm.getDateOfBirth());
+        student.setIdCode(studentForm.getIdCode());
+        student.setTeacherId(studentForm.getTeacherId());
+        studentService.addNewS(student);
+//        studentService.deleteStudent();
+
+        return studentInfo();
+    }
+
     @GetMapping("/showStudent")
     List<StudentModel> showAllStudent(){
 

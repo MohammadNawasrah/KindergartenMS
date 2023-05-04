@@ -3,12 +3,10 @@ package com.nawasrah.schoolMS.student.repository;
 import com.nawasrah.schoolMS.shard.db.sql.SqlHandler;
 import com.nawasrah.schoolMS.student.StudentModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,18 +16,19 @@ public class StudentRepository implements RepositoryDB<StudentModel> {
 
     private final static String tableName = "students";
     SqlHandler sqlHandler;
-    private String stringConnection = "jdbc:sqlite:C:\\Users\\nawas\\Desktop\\springBoot\\schoolMS\\src\\main\\java\\com\\nawasrah\\schoolMS\\shard\\db\\data\\KG.db";
+    //    Path path = Paths.get(.class.getResource("/").toURI());
+    private String stringConnection = "jdbc:sqlite:C:\\Users\\nawas\\Desktop\\springBoot\\schoolMS\\src\\main\\java\\com\\nawasrah\\schoolMS\\shard\\db\\data\\myDb.db";
 
     @Override
     public String addNweStudent(StudentModel studentModel) {
         try {
-            String sqlQ = "null,\"%s\",\"%s\",\"%tF\",\"%s\",%d";
-            String sqlF = String.format(sqlQ, studentModel.getName(),
+            String sqlQ = "null,\"%s\",\"%s\",\"%s\",\"%s\",%d";
+            String sqlF = String.format(sqlQ,
+                    studentModel.getName(),
                     studentModel.getNumberPhone()
                     , studentModel.getDateOfBirth()
                     , studentModel.getIdCode()
                     , studentModel.getTeacherId());
-            System.out.println(sqlF);
             sqlHandler.insertData(tableName, sqlF);
 
             return "Congratulation add new student";
@@ -71,7 +70,7 @@ public class StudentRepository implements RepositoryDB<StudentModel> {
             studentModel.setId(student.getLong("id"));
             studentModel.setName(student.getString("name"));
             studentModel.setNumberPhone(student.getString("numberPhone"));
-            studentModel.setDateOfBirth(LocalDate.parse( student.getString("dateOfBirth")));
+            studentModel.setDateOfBirth(student.getString("dateOfBirth"));
             studentModel.setTeacherId(student.getInt("teacherId"));
             studentModel.setIdCode(student.getString("idCode"));
             return studentModel;
@@ -86,9 +85,18 @@ public class StudentRepository implements RepositoryDB<StudentModel> {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT ," +
                 "name TEXT NOT NULL," +
                 "numberPhone TEXT NOT NULL," +
-                "dateOfBirth  DATE  Not NUll," +
+                "dateOfBirth  TEXT  Not NUll," +
                 "idCode TEXT NOT NULL," +
                 "teacherId DATE  Not NUll");
+    }
+
+    public boolean deleteLastStudent() {
+        try {
+            sqlHandler.deleteData("students");
+            return true;
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 //
 //    Users setUser(Users user, ResultSet users) {
