@@ -16,8 +16,7 @@ public class StudentRepository implements RepositoryDB<StudentModel> {
 
     private final static String tableName = "students";
     SqlHandler sqlHandler;
-    //    Path path = Paths.get(.class.getResource("/").toURI());
-    private String stringConnection = "jdbc:sqlite:C:\\Users\\nawas\\Desktop\\springBoot\\schoolMS\\src\\main\\java\\com\\nawasrah\\schoolMS\\shard\\db\\data\\myDb.db";
+    private String stringConnection = "jdbc:sqlite:src\\main\\java\\com\\nawasrah\\schoolMS\\shard\\db\\data\\myDb.db";
 
     @Override
     public String addNweStudent(StudentModel studentModel) {
@@ -41,7 +40,6 @@ public class StudentRepository implements RepositoryDB<StudentModel> {
     StudentRepository() throws SQLException {
         this.sqlHandler = new SqlHandler(stringConnection);
         createStudentTable();
-
     }
 
     @Override

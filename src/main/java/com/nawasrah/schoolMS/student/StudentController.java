@@ -1,8 +1,11 @@
 package com.nawasrah.schoolMS.student;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
 import java.util.List;
 
 @RestController
@@ -16,32 +19,40 @@ public class StudentController {
         return "Done create table ";
     }
 
-    @GetMapping("/")
-    public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/index");
-        return modelAndView;
-    }
-
     @GetMapping("/student_info")
-    public ModelAndView studentInfo() {
+    public ModelAndView studentInfo(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/student_info");
-        modelAndView.addObject("student", studentService.getAllStudent());
+        if (session.getAttribute("isLogin") != (null))
+            if ((boolean) session.getAttribute("isLogin")) {
+                modelAndView.setViewName("/student_info");
+                modelAndView.addObject("student", studentService.getAllStudent());
+            }
+        else {
+                modelAndView.setViewName("/index");
+                modelAndView.addObject("userName",session.getAttribute("userName"));
+            }
         return modelAndView;
     }
 
     @GetMapping("/addStudentPage")
-    public ModelAndView addStudentPage() {
+    public ModelAndView addStudentPage(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/add_student");
-        StudentModel mo = new StudentModel();
-        modelAndView.addObject("StudentModel", mo);
+        if (session.getAttribute("isLogin") != (null))
+            if ((boolean) session.getAttribute("isLogin")) {
+                modelAndView.setViewName("/add_student");
+                StudentModel mo = new StudentModel();
+                modelAndView.addObject("StudentModel", mo);
+            }
+        else {
+                modelAndView.setViewName("/index");
+                modelAndView.addObject("userName",session.getAttribute("userName"));
+            }
+
         return modelAndView;
     }
 
     @RequestMapping(value = "/addStudentPage", method = RequestMethod.POST)
-    public ModelAndView addStudent(@ModelAttribute("StudentModel") StudentModel studentForm) {
+    public RedirectView addStudent(@ModelAttribute("StudentModel") StudentModel studentForm) {
         StudentModel student = new StudentModel();
         student.setName(studentForm.getName());
         student.setNumberPhone(studentForm.getNumberPhone());
@@ -49,14 +60,8 @@ public class StudentController {
         student.setIdCode(studentForm.getIdCode());
         student.setTeacherId(studentForm.getTeacherId());
         studentService.addNewS(student);
-//        studentService.deleteStudent();
 
-        return studentInfo();
+        return new RedirectView("/student/student_info");
     }
 
-    @GetMapping("/showStudent")
-    List<StudentModel> showAllStudent(){
-
-        return studentService.getAllStudent();
-    }
 }
