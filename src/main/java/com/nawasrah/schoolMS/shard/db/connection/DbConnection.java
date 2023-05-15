@@ -6,5 +6,5 @@ import java.sql.SQLException;
 public interface DbConnection {
     Connection connection();
 
-    void closeConnection() throws SQLException;
+//    static abstract void closeConnection() throws SQLException;
 }
