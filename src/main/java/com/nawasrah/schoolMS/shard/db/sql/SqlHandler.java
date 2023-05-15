@@ -28,13 +28,16 @@ public class SqlHandler {
 
     public String createTable(String tableName, String columns) throws SQLException {
 
+
         if (!tableExists(tableName)) {
             String query = "CREATE TABLE IF NOT EXISTS " + tableName + " (" + columns + ")";
             try {
                 Statement stmt = dbConnectionImp.connection().createStatement();
                 stmt.executeUpdate(query);
+
                 return "Done create Table Name " + tableName;
             } catch (SQLException e) {
+                System.out.println(e.getMessage());
                 return "error";
             }
         }

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DbConnectionImp implements DbConnection {
 
-    private Connection connection;
+    private static Connection connection;
 
     public DbConnectionImp(String connectionString) throws SQLException {
         connection = DriverManager.getConnection(connectionString);
@@ -17,9 +17,7 @@ public class DbConnectionImp implements DbConnection {
         return connection;
     }
 
-    @Override
-
-    public void closeConnection() throws SQLException {
+    public static void closeConnection() throws SQLException {
         connection.close();
     }
 }
