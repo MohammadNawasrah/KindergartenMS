@@ -14,6 +14,7 @@ public class TeacherAdminController {
 
     @GetMapping("/")
     public ModelAndView loginPage() {
+        System.out.println("Get/index");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/index");
         return modelAndView;
@@ -22,7 +23,7 @@ public class TeacherAdminController {
     @PostMapping("/login")
     public RedirectView processLoginForm(@RequestParam("username") String username, HttpSession session,
                                          @RequestParam("password") String password, RedirectAttributes redirectAttributes) {
-
+        System.out.println("Post/login");
         ModelAndView modelAndView = new ModelAndView();
         Boolean authenticatedUser = teacherService.login(username, password);
         if (authenticatedUser) {
@@ -37,6 +38,7 @@ public class TeacherAdminController {
     }
     @GetMapping("/logout")
     public ModelAndView logout(HttpSession session) {
+        System.out.println("Get/logout");
         ModelAndView modelAndView = new ModelAndView();
         session.invalidate();
         modelAndView.setViewName("/index");
