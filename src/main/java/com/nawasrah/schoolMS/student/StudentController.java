@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.List;
+
 
 @RestController
 @RequestMapping(value = "/student")
@@ -14,10 +14,6 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("/createTableStudent")
-    String createTable() {
-        return "Done create table ";
-    }
 
     @GetMapping("/student_info")
     public ModelAndView studentInfo(HttpSession session) {
@@ -60,7 +56,6 @@ public class StudentController {
         student.setIdCode(studentForm.getIdCode());
         student.setTeacherId(studentForm.getTeacherId());
         studentService.addNewS(student);
-
         return new RedirectView("/student/student_info");
     }
 

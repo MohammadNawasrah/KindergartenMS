@@ -1,4 +1,5 @@
 package com.nawasrah.schoolMS.teacherAdmin;
+import com.nawasrah.schoolMS.admin.AdminService;
 import com.nawasrah.schoolMS.teacher.TeacherService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,9 @@ public class TeacherAdminController {
         ModelAndView modelAndView = new ModelAndView();
         Boolean authenticatedUser = teacherService.login(username, password);
         if (authenticatedUser) {
-            RedirectView redirectView = new RedirectView();
             session.setAttribute("isLogin", true);
             session.setAttribute("userName", username);
-            redirectView.setUrl("/student/student_info");
-           return  redirectView;
+           return AdminService.toAdminView();
         }
         redirectAttributes.addFlashAttribute("userName",username);
         return   new RedirectView("/");
@@ -42,7 +41,6 @@ public class TeacherAdminController {
         ModelAndView modelAndView = new ModelAndView();
         session.invalidate();
         modelAndView.setViewName("/index");
-
         return modelAndView;
     }
 
