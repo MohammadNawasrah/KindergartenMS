@@ -1,0 +1,17 @@
+.card {
+    direction: rtl;
+    margin: 10px;
+}
+
+#card {
+    direction: rtl;
+    margin-top: 200px;
+    padding: 20px;
+    border: 2px solid black;
+    box-shadow: black -3px -3px 20px;
+    max-width: 1000px;
+}
+
+.image {
+    width: fit-content;
+}
