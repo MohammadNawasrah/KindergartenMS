@@ -1,2 +1,5 @@
 # Default ignored files
 *.db
+src/main/resources/templates/pages/hi.html
+
+.gitignore

@@ -23,7 +23,6 @@ public class StudentService {
     }
     public void deleteStudent() {
         studentRepository.deleteLastStudent();
-
     }
 
 }
