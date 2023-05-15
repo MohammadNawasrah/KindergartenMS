@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>login</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+</head>
+<body>
+	<script
+type="text/javascript"
+src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"
+></script>
+<nav class="navbar navbar-light bg-dark navbarLogin">
+        <div class="col d-flex justify-content-center text-center colText text-white" style="flex:5">
+          روضة الامل بستاني تمهيدي
+        </div>
+</nav>
+<div class="container  loginForm ">
+    <form th:action="@{/login}"  method="Post" >
+        <div class="text-center mb-5">
+            <h1 class="h3 mb-3 font-weight-normal textAlert">تسجيل الدخول</h1>
+        </div>
+        <div class="form-label-group">
+            <input type="text" name="username" th:value="${userName}" id="inputUsername" class="form-control userName"
+                   placeholder="اسم المسنخدم" required autofocus>
+        </div>
+        <div class="form-label-group mt-3">
+            <input type="password" name="password" value="" id="inputPassword" class="form-control password"
+                   placeholder="الرقم السري" required>
+        </div>
+
+        <button class="upB" type="button" name="login" id="ajaxBtn" data-toggle="collapse">دخول</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+
+  var myRequst = new XMLHttpRequest();
+
+  $("#ajaxBtn").click(function () {
+	const params = {
+		username: document.querySelector('#inputUsername').value,
+		password: document.querySelector('#inputPassword').value
+        }
+	myRequst.onreadystatechange = function () {
+	  if (this.readyState === 4 && this.status === 200) {
+		document.clear();
+	  }
+	};
+	myRequst.open("Post", "/login", true);
+	myRequst.setRequestHeader('Content-type', 'application/json')
+	myRequst.send(JSON.stringify(params));
+  });
+});
+</script>
+</body>
+</html>
+
+
