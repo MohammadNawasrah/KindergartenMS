@@ -1,5 +1,6 @@
 package com.nawasrah.schoolMS.student.repository;
 
+import com.nawasrah.schoolMS.core.ConstantData;
 import com.nawasrah.schoolMS.shard.db.sql.SqlHandler;
 import com.nawasrah.schoolMS.student.StudentModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +11,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Component
 public class StudentRepository implements RepositoryDB<StudentModel> {
 
     private final static String tableName = "students";
     SqlHandler sqlHandler;
-    private String stringConnection = "jdbc:sqlite:src\\main\\java\\com\\nawasrah\\schoolMS\\shard\\db\\data\\myDb.db";
+    private String stringConnection = "jdbc:sqlite:" + ConstantData.pathDatabase + ConstantData.kg;
 
     @Override
     public String addNweStudent(StudentModel studentModel) {
@@ -24,10 +24,8 @@ public class StudentRepository implements RepositoryDB<StudentModel> {
             String sqlQ = "null,\"%s\",\"%s\",\"%s\",\"%s\",%d";
             String sqlF = String.format(sqlQ,
                     studentModel.getName(),
-                    studentModel.getNumberPhone()
-                    , studentModel.getDateOfBirth()
-                    , studentModel.getIdCode()
-                    , studentModel.getTeacherId());
+                    studentModel.getNumberPhone(), studentModel.getDateOfBirth(), studentModel.getIdCode(),
+                    studentModel.getTeacherId());
             sqlHandler.insertData(tableName, sqlF);
 
             return "Congratulation add new student";
@@ -63,6 +61,7 @@ public class StudentRepository implements RepositoryDB<StudentModel> {
             return null;
         }
     }
+
     StudentModel setStudent(StudentModel studentModel, ResultSet student) {
         try {
             studentModel.setId(student.getLong("id"));
@@ -96,147 +95,148 @@ public class StudentRepository implements RepositoryDB<StudentModel> {
             throw new RuntimeException(ex);
         }
     }
-//
-//    Users setUser(Users user, ResultSet users) {
-//        SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-mm-dd");
-//        try {
-//            CyberPassword cyberPassword = new CyberPassword();
-//            user.setUsers_id(users.getLong("users_id"));
-//            user.setUsers_name(users.getString("users_name"));
-//            user.setUsers_password(cyberPassword.decryption(users.getString("users_password")));
-//            user.setUsers_name(users.getString("users_name"));
-//            user.setUsers_email(users.getString("users_email"));
-//            user.setUser_create(dt1.parse(users.getString("user_create")));
-//            user.setUsers_verifycode(users.getInt("users_verifycode"));
-//            user.setUsers_approve(users.getBoolean("users_approve"));
-//            return user;
-//        } catch (Exception exception) {
-//            System.out.println(exception);
-//            return null;
-//        }
-//    }
-//
-//    @Override
-//    public List<Users> findAll() {
-//        try {
-//            String tableName = "users";
-//            ResultSet user = sqlHandler.selectData(tableName);
-//            List<Users> userList = new ArrayList<>();
-//            int count = 0;
-//            while (user.next()) {
-//                Users e = new Users();
-//                count++;
-//                setUser(e, user);
-//                userList.add(e);
-//            }
-//            if (count > 0)
-//                return userList;
-//            else
-//                return null;
-//        } catch (Exception e) {
-//            System.out.println(e.getMessage());
-//            return null;
-//        }
-//    }
-//
-//
-//    @Override
-//    public Users findByWhere(String column, Object data) {
-//        try {
-//
-//            int count = 0;
-//            ResultSet users = sqlHandler.selectDataWhere("users", column, data);
-//            Users user = new Users();
-//            while (users.next()) {
-//                count++;
-//                user = setUser(user, users);
-//            }
-//            if (count > 0)
-//                return user;
-//            else
-//                return null;
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//            throw new RuntimeException(e);
-//        }
-//    }
-//
-//    @Override
-//    public String ifExistsEmail(String email) {
-//        List<Users> allUsers = new ArrayList<>();
-//        allUsers = findAll();
-//        if (allUsers != null)
-//            for (Users users : allUsers) {
-//                if (users.getUsers_email().equals(email)) {
-//                    return "Exist Email";
-//                }
-//            }
-//        return "Not Exist Email";
-//    }
-//
-//    @Override
-//    public String insertUser(StudentModel data) throws SQLException {
-//        return null;
-//    }
-//
-//    @Override
-//    public String insertUser(Users user) throws SQLException {
-//        CyberPassword cyberPassword = new CyberPassword();
-//        String existsUser = ifExistsEmail(user.getUsers_email());
-//        String tableName = "users";
-//        if (existsUser.equals("Not Exist Email")) {
-//            String sqlQ = "null,\"%s\",\"%s\",\"%s\",0,CURRENT_DATE,false ";
-//            String sqlF = String.format(sqlQ, user.getUsers_name()
-//                    , cyberPassword.encryption(user.getUsers_password()), user.getUsers_email());
-//            sqlHandler.insertData(tableName, sqlF);
-//            return "Congratulation Create Email";
-//        }
-//        return "Email Is Already Exist";
-//    }
-//
-//    public String checkPassword(String email, String password) {
-//        CyberPassword cyberPassword = new CyberPassword();
-//        List<Users> allUsers = new ArrayList<>();
-//        allUsers = findAll();
-//        for (Users users : allUsers) {
-//            if (users.getUsers_email().equals(email)) {
-//                if (password.equals(users.getUsers_password())) {
-//                    if (users.isUsers_approve())
-//                        return "Correct Password";
-//                    else
-//                        return "Your Email Not Approve";
-//                }
-//                    else
-//                        return "Not Correct Password";
-//
-//            }
-//        }
-//        return "Not Exist Email";
-//    }
-//    public String checkVerifyCode(String email, Object verifyCode) {
-//        List<Users> allUsers = new ArrayList<>();
-//        allUsers = findAll();
-//        for (Users users : allUsers) {
-//            if (users.getUsers_email().equals(email)) {
-//                if (verifyCode.equals(users.getUsers_verifycode()))
-//                    return "Correct VerifyCode";
-//                else
-//                    return "Not Correct VerifyCode";
-//            }
-//        }
-//        return "Not Exist Email";
-//    }
-//
-//    @Override
-//    public String updateByEmail(String column, Object value, String key, String email) {
-//        String existsUser = ifExistsEmail(email);
-//        String tableName = "users";
-//        if (existsUser.equals("Exist Email")) {
-//            sqlHandler.updateData(tableName,column,value,key,email);
-//            return "Done Update";
-//        }
-//        return "Not Exist Email";
-//    }
+    //
+    // Users setUser(Users user, ResultSet users) {
+    // SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-mm-dd");
+    // try {
+    // CyberPassword cyberPassword = new CyberPassword();
+    // user.setUsers_id(users.getLong("users_id"));
+    // user.setUsers_name(users.getString("users_name"));
+    // user.setUsers_password(cyberPassword.decryption(users.getString("users_password")));
+    // user.setUsers_name(users.getString("users_name"));
+    // user.setUsers_email(users.getString("users_email"));
+    // user.setUser_create(dt1.parse(users.getString("user_create")));
+    // user.setUsers_verifycode(users.getInt("users_verifycode"));
+    // user.setUsers_approve(users.getBoolean("users_approve"));
+    // return user;
+    // } catch (Exception exception) {
+    // System.out.println(exception);
+    // return null;
+    // }
+    // }
+    //
+    // @Override
+    // public List<Users> findAll() {
+    // try {
+    // String tableName = "users";
+    // ResultSet user = sqlHandler.selectData(tableName);
+    // List<Users> userList = new ArrayList<>();
+    // int count = 0;
+    // while (user.next()) {
+    // Users e = new Users();
+    // count++;
+    // setUser(e, user);
+    // userList.add(e);
+    // }
+    // if (count > 0)
+    // return userList;
+    // else
+    // return null;
+    // } catch (Exception e) {
+    // System.out.println(e.getMessage());
+    // return null;
+    // }
+    // }
+    //
+    //
+    // @Override
+    // public Users findByWhere(String column, Object data) {
+    // try {
+    //
+    // int count = 0;
+    // ResultSet users = sqlHandler.selectDataWhere("users", column, data);
+    // Users user = new Users();
+    // while (users.next()) {
+    // count++;
+    // user = setUser(user, users);
+    // }
+    // if (count > 0)
+    // return user;
+    // else
+    // return null;
+    // } catch (SQLException e) {
+    // System.out.println(e.getMessage());
+    // throw new RuntimeException(e);
+    // }
+    // }
+    //
+    // @Override
+    // public String ifExistsEmail(String email) {
+    // List<Users> allUsers = new ArrayList<>();
+    // allUsers = findAll();
+    // if (allUsers != null)
+    // for (Users users : allUsers) {
+    // if (users.getUsers_email().equals(email)) {
+    // return "Exist Email";
+    // }
+    // }
+    // return "Not Exist Email";
+    // }
+    //
+    // @Override
+    // public String insertUser(StudentModel data) throws SQLException {
+    // return null;
+    // }
+    //
+    // @Override
+    // public String insertUser(Users user) throws SQLException {
+    // CyberPassword cyberPassword = new CyberPassword();
+    // String existsUser = ifExistsEmail(user.getUsers_email());
+    // String tableName = "users";
+    // if (existsUser.equals("Not Exist Email")) {
+    // String sqlQ = "null,\"%s\",\"%s\",\"%s\",0,CURRENT_DATE,false ";
+    // String sqlF = String.format(sqlQ, user.getUsers_name()
+    // , cyberPassword.encryption(user.getUsers_password()), user.getUsers_email());
+    // sqlHandler.insertData(tableName, sqlF);
+    // return "Congratulation Create Email";
+    // }
+    // return "Email Is Already Exist";
+    // }
+    //
+    // public String checkPassword(String email, String password) {
+    // CyberPassword cyberPassword = new CyberPassword();
+    // List<Users> allUsers = new ArrayList<>();
+    // allUsers = findAll();
+    // for (Users users : allUsers) {
+    // if (users.getUsers_email().equals(email)) {
+    // if (password.equals(users.getUsers_password())) {
+    // if (users.isUsers_approve())
+    // return "Correct Password";
+    // else
+    // return "Your Email Not Approve";
+    // }
+    // else
+    // return "Not Correct Password";
+    //
+    // }
+    // }
+    // return "Not Exist Email";
+    // }
+    // public String checkVerifyCode(String email, Object verifyCode) {
+    // List<Users> allUsers = new ArrayList<>();
+    // allUsers = findAll();
+    // for (Users users : allUsers) {
+    // if (users.getUsers_email().equals(email)) {
+    // if (verifyCode.equals(users.getUsers_verifycode()))
+    // return "Correct VerifyCode";
+    // else
+    // return "Not Correct VerifyCode";
+    // }
+    // }
+    // return "Not Exist Email";
+    // }
+    //
+    // @Override
+    // public String updateByEmail(String column, Object value, String key, String
+    // email) {
+    // String existsUser = ifExistsEmail(email);
+    // String tableName = "users";
+    // if (existsUser.equals("Exist Email")) {
+    // sqlHandler.updateData(tableName,column,value,key,email);
+    // return "Done Update";
+    // }
+    // return "Not Exist Email";
+    // }
 }
 
 // import in.nawasrah.ecommercesystemAPI.core.Cyber.CyberPassword;
@@ -258,7 +258,6 @@ public class StudentRepository implements RepositoryDB<StudentModel> {
 // private DbSql dbSql;
 // private Connection con;
 
-
 // public Connection connection() {
 
 // con = dbSql.connection(this.stringConnection);
@@ -274,7 +273,6 @@ public class StudentRepository implements RepositoryDB<StudentModel> {
 // dbSql.createTable(sql, con);
 // return con;
 // }
-
 
 // if (count > 0)
 // return user;
@@ -309,7 +307,6 @@ public class StudentRepository implements RepositoryDB<StudentModel> {
 // return false;
 // }
 // }
-
 
 // public String checkPassword(String email, String password) {
 // CyberPassword cyberPassword=new CyberPassword();
