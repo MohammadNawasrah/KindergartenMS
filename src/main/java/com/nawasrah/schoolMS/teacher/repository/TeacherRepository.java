@@ -1,8 +1,8 @@
 package com.nawasrah.schoolMS.teacher.repository;
 
+import com.nawasrah.schoolMS.core.ConstantData;
 import com.nawasrah.schoolMS.shard.db.connection.DbConnectionImp;
 import com.nawasrah.schoolMS.shard.db.sql.SqlHandler;
-import com.nawasrah.schoolMS.student.StudentModel;
 import com.nawasrah.schoolMS.teacher.TeacherModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,12 +16,15 @@ import java.util.List;
 public class TeacherRepository {
     private final static String tableName = "teachers";
     SqlHandler sqlHandler;
-    private String stringConnection = "jdbc:sqlite:src\\main\\java\\com\\nawasrah\\schoolMS\\shard\\db\\data\\myDb.db";
+    private String stringConnection = "jdbc:sqlite:" + ConstantData.pathDatabase + ConstantData.kg;
+
     @Autowired
     TeacherRepository() throws SQLException {
         DbConnectionImp.closeConnection();
         this.sqlHandler = new SqlHandler(stringConnection);
+        createStudentTable();
     }
+
     private String createStudentTable() throws SQLException {
         return sqlHandler.createTable(tableName, "" +
                 "teacherId INTEGER PRIMARY KEY AUTOINCREMENT ," +
@@ -30,6 +33,7 @@ public class TeacherRepository {
                 "userName  TEXT  Not NUll," +
                 "isLogin TEXT NOT NULL");
     }
+
     TeacherModel setTeacher(TeacherModel teacherModel, ResultSet teacher) {
         try {
             teacherModel.setTeacherId(teacher.getInt("teacherId"));
@@ -43,6 +47,7 @@ public class TeacherRepository {
             return null;
         }
     }
+
     public List<TeacherModel> findAll() {
         try {
             ResultSet teachers = sqlHandler.selectData(tableName);
