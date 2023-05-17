@@ -4,7 +4,6 @@ import com.nawasrah.schoolMS.core.ConstantData;
 import com.nawasrah.schoolMS.shard.db.connection.DbConnectionImp;
 import com.nawasrah.schoolMS.shard.db.sql.SqlHandler;
 import com.nawasrah.schoolMS.teacher.TeacherModel;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
@@ -18,7 +17,6 @@ public class TeacherRepository {
     SqlHandler sqlHandler;
     private String stringConnection = "jdbc:sqlite:" + ConstantData.pathDatabase + ConstantData.kg;
 
-    @Autowired
     TeacherRepository() throws SQLException {
         DbConnectionImp.closeConnection();
         this.sqlHandler = new SqlHandler(stringConnection);
@@ -32,6 +30,23 @@ public class TeacherRepository {
                 "password TEXT NOT NULL," +
                 "userName  TEXT  Not NUll," +
                 "isLogin TEXT NOT NULL");
+    }
+
+    public String addNweTeacher(TeacherModel teacherModel) {
+        try {
+            if (findByWhere("userName", teacherModel.getUserName()) == null) {
+                String sqlQ = "null,\"%s\",\"%s\",\"%s\",false";
+                String sqlF = String.format(sqlQ,
+                        teacherModel.getName(),
+                        teacherModel.getPassword(),
+                        teacherModel.getUserName());
+                sqlHandler.insertData(tableName, sqlF);
+                return "Congratulation add new teacher";
+            }
+            return "userName is already exist";
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
     TeacherModel setTeacher(TeacherModel teacherModel, ResultSet teacher) {

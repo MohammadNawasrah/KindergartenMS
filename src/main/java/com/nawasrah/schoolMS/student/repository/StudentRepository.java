@@ -3,7 +3,6 @@ package com.nawasrah.schoolMS.student.repository;
 import com.nawasrah.schoolMS.core.ConstantData;
 import com.nawasrah.schoolMS.shard.db.sql.SqlHandler;
 import com.nawasrah.schoolMS.student.StudentModel;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
@@ -34,7 +33,6 @@ public class StudentRepository implements RepositoryDB<StudentModel> {
         }
     }
 
-    @Autowired
     StudentRepository() throws SQLException {
         this.sqlHandler = new SqlHandler(stringConnection);
         createStudentTable();

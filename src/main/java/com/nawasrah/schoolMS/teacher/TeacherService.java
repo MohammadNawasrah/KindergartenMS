@@ -28,4 +28,9 @@ public class TeacherService {
         TeacherModel teacherModel = teacherRepository.findByWhere("userName", username);
         return teacherModel.isLogin();
     }
+
+    public String addNewTeacher(TeacherModel teacherModel) {
+        String response = teacherRepository.addNweTeacher(teacherModel);
+        return response;
+    }
 }
