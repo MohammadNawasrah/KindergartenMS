@@ -34,7 +34,7 @@ public class StudentController {
     public ModelAndView addStudentPage(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
         if (session.getAttribute("isLogin") != (null))
-            if ((boolean) session.getAttribute("isLogin")) {
+            if (true) {
                 modelAndView.setViewName("/add_student");
                 StudentModel mo = new StudentModel();
                 modelAndView.addObject("StudentModel", mo);
@@ -48,7 +48,7 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/addStudentPage", method = RequestMethod.POST)
-    public RedirectView addStudent(@ModelAttribute("StudentModel") StudentModel studentForm) {
+    public void addStudent(@RequestBody StudentModel studentForm) {
         StudentModel student = new StudentModel();
         student.setName(studentForm.getName());
         student.setNumberPhone(studentForm.getNumberPhone());
@@ -56,7 +56,7 @@ public class StudentController {
         student.setIdCode(studentForm.getIdCode());
         student.setTeacherId(studentForm.getTeacherId());
         studentService.addNewS(student);
-        return new RedirectView("/student/student_info");
+//        return new RedirectView("/student/student_info");
     }
 
 }
