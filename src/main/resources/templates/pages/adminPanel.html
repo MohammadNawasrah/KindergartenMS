@@ -58,8 +58,7 @@
   </nav>
 
   <div id="card" class="container rounded-2">
-    <div class="row d-flex justify-content-between">
-      <div class="card text-center" style="width: 18rem">
+      <div class="card text-center" style="width: 18rem m-2">
         <div class="card-body">
           <h5 class="card-title">ادخال جميع التلاميذ</h5>
           <div class="mb-3">
@@ -70,7 +69,13 @@
             onclick="button(0)">اضافة الطلاب</button>
         </div>
       </div>
-    </div>
+      <div class="card text-center" style="width: 18rem m-2">
+        <div class="card-body">
+          <h5 class="card-title">بيانات الطلاب</h5>
+          <button class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" type="submit"
+            onclick="button(1)">اضافة الطلاب</button>
+        </div>
+      </div>
   </div>
     <script th:src="@{/bootstrapFile/Bmain.js}"></script>
     <script th:src="@{/bootstrapFile/Bmain1.js}"></script>
@@ -97,7 +102,7 @@
           <div class="modal-footer d-flex justify-content-center">
             <button type="submit" style="width:150px" id="closeButtonPost" name="closeButtonPost"
               class="btn btn-success " data-dismiss="modal"> اغلاق</button>
-            <button type="button" id="nextBage" style="width:150px" class="btn btn-danger">تأكيد</button>
+            <a  id="nextBage" style="width:150px" class="btn btn-danger">تأكيد</a>
           </div>
 
         </div>

@@ -1,6 +1,8 @@
 package com.nawasrah.schoolMS.teacherAdmin;
 
 import com.nawasrah.schoolMS.admin.AdminService;
+import com.nawasrah.schoolMS.core.ConstantData;
+import com.nawasrah.schoolMS.core.HttpSessionPage;
 import com.nawasrah.schoolMS.core.RedirectTo;
 import com.nawasrah.schoolMS.core.ToView;
 import com.nawasrah.schoolMS.teacher.TeacherService;
@@ -21,29 +23,31 @@ public class TeacherAdminController {
 
     @GetMapping("/")
     public ModelAndView loginPage() {
-        System.out.println("Get/index");
-        return ToView.toView("index");
+        System.out.println("Get/login");
+        return ToView.toView(ConstantData.mainPage);
     }
 
     @PostMapping("/login")
     public RedirectView processLoginForm(@RequestParam("username") String username, HttpSession session,
                                          @RequestParam("password") String password, RedirectAttributes redirectAttributes) {
-        System.out.println("Post/login");
+        System.out.println("Post/login?username=" + username + ", password=" + password);
         Boolean authenticatedUser = teacherService.login(username, password);
         if (authenticatedUser) {
-            session.setAttribute("isLogin", true);
-            session.setAttribute("userName", username);
-            if (AdminService.isAdmin(password))
-                return RedirectTo.redirectTo("/admin_panel");
+            HttpSessionPage.setSession(session, ConstantData.userName, username);
+            if (AdminService.isAdmin(password)) {
+                HttpSessionPage.setSession(session, ConstantData.admin, true);
+                return RedirectTo.redirectTo("/admin/panel");
+            }
+            HttpSessionPage.setSession(session, ConstantData.admin, false);
             return RedirectTo.redirectTo("/student/student_info");
         }
-        redirectAttributes.addFlashAttribute("userName",username);
+        redirectAttributes.addFlashAttribute( ConstantData.userName,username);
         return RedirectTo.redirectTo("/");
     }
     @GetMapping("/logout")
     public ModelAndView logout(HttpSession session) {
         System.out.println("Get/logout");
-        session.invalidate();
-        return ToView.toView("index");
+        HttpSessionPage.closeSession(session);
+        return ToView.toView(ConstantData.mainPage);
     }
 }
