@@ -1,7 +1,10 @@
 package com.nawasrah.schoolMS.core;
 
 public class ConstantData {
-    private static String teacher="teacher";
-    private static String admin="admin";
-    private static String student="student";
+    public static String teacher="teacher";
+    public static String admin="admin";
+    public static String student="student";
+    public static String userName="userName";
+    //pages
+    public static String mainPage="index";
 }
