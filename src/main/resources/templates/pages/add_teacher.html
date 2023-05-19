@@ -2,8 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Teacher Form</title>
+	<meta charset="utf-8" />
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>اضافة معلم</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/bootstrapFile/Bmain.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/css/addTeacher.css}" />
 	<script th:src="@{/bootstrapFile/Bmain.js}"></script>
@@ -11,22 +14,79 @@
 	<script th:src="@{/bootstrapFile/Bmain2.js}"></script>
 </head>
 
-<body>
-	<div class="container">
-		<h1>Teacher Form</h1>
-		<div class="form-group">
-			<label for="name">Name</label>
-			<input type="text" class="form-control" id="name" name="name" required>
+<body style="display: float;justify-content: center;align-items: center; height: 100vh;">
+	<nav style="direction: rtl" class="navbar navbar-dark bg-black fixed-top">
+		<div class="container-fluid">
+			<div class="col align-self-center">
+				<span class="navbar-brand">روضه طلائع الامل النموذجيه</span>
+			</div>
+			<div class="container w-25">
+				<h2 class="textHead"></h2>
+			</div>
+			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+				data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+				aria-labelledby="offcanvasDarkNavbarLabel">
+				<div class="offcanvas-header" style="direction: rtl">
+					<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+						aria-label="Close"></button>
+					<h5 class="offcanvas-title" th:text="${nameOfTeacher}" id="offcanvasDarkNavbarLabel">
+
+					</h5>
+				</div>
+				<div class="offcanvas-body">
+					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+						<li class="nav-item">
+							<form method="get" th:action="@{/admin/panel}">
+								<div class="row mt-2" style="direction: rtl">
+									<div class="col-1 mt-1">
+										<img style="width: 30px; cursor: pointer" th:src="@{/image/navbar/home.png}"
+											alt="" />
+									</div>
+									<div class="col-10">
+										<button type="submit" class="btn btn-link nav-link float-end">
+											الصفحه الرئيسية
+										</button>
+									</div>
+								</div>
+							</form>
+						</li>
+						<li class="nav-item">
+							<form method="get" th:action="logout">
+								<div class="row mt-2" style="direction: rtl">
+									<div class="col-1 mt-1">
+										<img style="width: 30px; cursor: pointer" th:src="@{/image/navbar/logout.png}"
+											alt="" />
+									</div>
+									<div class="col-10">
+										<button type="submit" class="btn btn-link nav-link float-end">
+											تسجيل الخروج
+										</button>
+									</div>
+								</div>
+							</form>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
-		<div class="form-group">
-			<label for="password">Password</label>
-			<input type="password" class="form-control" id="password" name="password" required>
+	</nav>
+	<div style="padding-top: 60px;" class="container">
+		<h1 class="container d-flex justify-content-center">اضافة معلم جديد</h1>
+		<div class="form-group  pt-4">
+			<input type="text" class="form-control text-center" id="name" placeholder="اسم المعلم" name="name" required>
 		</div>
-		<div class="form-group">
-			<label for="username">Username</label>
-			<input type="text" class="form-control" id="username" name="userName" required>
+		<div class="form-group  pt-4">
+			<input type="password" class="form-control text-center" id="password" placeholder="الرقم السري"
+				name="password" required>
 		</div>
-		<button type="button" id="submitButton" class="btn btn-primary">اضافة</button>
+		<div class="form-group  pt-4">
+			<input type="text" class="form-control text-center" id="username"
+				placeholder="اسم المستخدم الخاص بالمعلم فقط باللغه الانجليزيه" name="userName" required>
+		</div>
+		<button type="button" id="submitButton" class="btn btn-primary mt-4">اضافة</button>
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 			aria-hidden="true">
 			<div class="modal-dialog" role="document">

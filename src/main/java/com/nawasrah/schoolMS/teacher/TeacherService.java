@@ -23,7 +23,12 @@ public class TeacherService {
 
         return false;
     }
-
+    public String getNameOfTeacher(String username) {
+        TeacherModel teacherModel = teacherRepository.findByWhere("userName", username);
+        if (teacherModel != null)
+            return teacherModel.getName();
+        return null;
+    }
     public boolean loginAccess(String username) {
         TeacherModel teacherModel = teacherRepository.findByWhere("userName", username);
         return teacherModel.isLogin();
