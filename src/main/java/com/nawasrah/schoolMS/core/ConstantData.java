@@ -9,6 +9,6 @@ public class ConstantData {
     // pages
     public static String mainPage = "index";
     // database connection string
-    public static String kg = "myDb.db";
+    public static String kg = "myDb1.db";
     public static String pathDatabase = "src\\main\\java\\com\\nawasrah\\schoolMS\\shard\\db\\data\\";
 }

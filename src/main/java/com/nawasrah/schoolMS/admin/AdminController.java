@@ -8,6 +8,8 @@ import com.nawasrah.schoolMS.student.StudentModel;
 import com.nawasrah.schoolMS.student.StudentService;
 import com.nawasrah.schoolMS.teacher.TeacherModel;
 import com.nawasrah.schoolMS.teacher.TeacherService;
+import com.nawasrah.schoolMS.teacherAdmin.TeacherAdminModel;
+import com.nawasrah.schoolMS.teacherAdmin.TeacherAdminService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,7 +22,7 @@ public class AdminController {
     @Autowired
     private StudentService studentService;
     @Autowired
-    private TeacherService teacherService;
+    private TeacherAdminService teacherService;
 
     @GetMapping("/panel")
     public Object adminPanel(HttpSession session) {
@@ -46,24 +48,13 @@ public class AdminController {
 
     @RequestMapping(value = "/addStudentPage", method = RequestMethod.POST)
     public void addStudent(@RequestBody StudentModel studentForm) {
-        StudentModel student = new StudentModel();
-        student.setName(studentForm.getName());
-        student.setNumberPhone(studentForm.getNumberPhone());
-        student.setDateOfBirth(studentForm.getDateOfBirth());
-        student.setIdCode(studentForm.getIdCode());
-        student.setTeacherId(studentForm.getTeacherId());
-        studentService.addNewS(student);
+        studentService.addNewS(studentForm);
     }
 
     @PostMapping(value = "/addNewTeacher", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public String addNewTeacher(@RequestBody TeacherModel teacherForm) {
-        System.out.println(teacherForm.getName());
-        TeacherModel teacherModel = new TeacherModel();
-        teacherModel.setName(teacherForm.getName());
-        teacherModel.setPassword(teacherForm.getPassword());
-        teacherModel.setUserName(teacherForm.getUserName());
-        return teacherService.addNewTeacher(teacherModel);
+    public String addNewTeacher(@RequestBody TeacherAdminModel teacherAdminModel) {
+        return teacherService.addNewUser(teacherAdminModel);
     }
 
     @RequestMapping(value = "/addNewTeacher", method = RequestMethod.GET)

@@ -34,7 +34,6 @@ public class SqlHandler {
             try {
                 Statement stmt = dbConnectionImp.connection().createStatement();
                 stmt.executeUpdate(query);
-
                 return "Done create Table Name " + tableName;
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
@@ -68,12 +67,12 @@ public class SqlHandler {
 
     }
 
-    public boolean insertData(String tableName, String values) throws SQLException {
+    public boolean insertData(String tableName, String values) {
         String query = "INSERT INTO " + tableName + " VALUES (" + values + ")";
-
         try {
             Statement stmt = dbConnectionImp.connection().createStatement();
-            return stmt.execute(query);
+            stmt.execute(query);
+            return true;
         } catch (SQLException e) {
             return false;
         }

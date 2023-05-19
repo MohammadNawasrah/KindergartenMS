@@ -20,6 +20,8 @@ import org.springframework.web.servlet.view.RedirectView;
 public class TeacherAdminController {
     @Autowired
     TeacherService teacherService;
+    @Autowired
+    TeacherAdminService teacherAdminService;
 
     @GetMapping("/")
     public ModelAndView loginPage() {

@@ -3,6 +3,7 @@ package com.nawasrah.schoolMS.student.repository;
 import com.nawasrah.schoolMS.core.ConstantData;
 import com.nawasrah.schoolMS.shard.db.sql.SqlHandler;
 import com.nawasrah.schoolMS.student.StudentModel;
+import com.nawasrah.schoolMS.test.ClassInfoExample;
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
@@ -20,13 +21,7 @@ public class StudentRepository implements RepositoryDB<StudentModel> {
     @Override
     public String addNweStudent(StudentModel studentModel) {
         try {
-            String sqlQ = "null,\"%s\",\"%s\",\"%s\",\"%s\",%d";
-            String sqlF = String.format(sqlQ,
-                    studentModel.getName(),
-                    studentModel.getNumberPhone(), studentModel.getDateOfBirth(), studentModel.getIdCode(),
-                    studentModel.getTeacherId());
-            sqlHandler.insertData(tableName, sqlF);
-
+            sqlHandler.insertData(tableName, ClassInfoExample.getDataFromModel(studentModel));
             return "Congratulation add new student";
         } catch (Exception e) {
             return e.getMessage();

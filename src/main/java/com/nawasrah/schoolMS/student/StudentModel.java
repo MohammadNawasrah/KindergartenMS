@@ -18,5 +18,4 @@ public class StudentModel {
     public String dateOfBirth;
     public String idCode;
     public int teacherId;
-
 }

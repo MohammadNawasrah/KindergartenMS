@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdminService {
     public static boolean isAdmin(String password) {
-        if (password.contains("@1"))
+        if (password.contains("@"))
             return true;
         return false;
     }

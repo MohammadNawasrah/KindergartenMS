@@ -12,9 +12,7 @@ public class StudentService {
     private StudentRepository studentRepository;
 
     public String addNewS(StudentModel studentModel) {
-
         return studentRepository.addNweStudent(studentModel);
-
     }
     public List<StudentModel> getAllStudent() {
 

@@ -1,11 +1,12 @@
-package com.nawasrah.schoolMS.teacher.repository;
+package com.nawasrah.schoolMS.teacherAdmin.repository;
 
 import com.nawasrah.schoolMS.core.ConstantData;
 import com.nawasrah.schoolMS.shard.db.connection.DbConnectionImp;
 import com.nawasrah.schoolMS.shard.db.sql.SqlHandler;
 import com.nawasrah.schoolMS.teacher.TeacherModel;
+import com.nawasrah.schoolMS.teacherAdmin.TeacherAdminModel;
 import com.nawasrah.schoolMS.test.ClassInfoExample;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,40 +14,32 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Component
-public class TeacherRepository {
-    private final static String tableName = "teachers";
+@Repository
+public class TeacherAdminRepository {
+
+    private final static String tableName = "teacherAdmin";
     SqlHandler sqlHandler;
     private String stringConnection = "jdbc:sqlite:" + ConstantData.pathDatabase + ConstantData.kg;
 
-    TeacherRepository() throws SQLException {
+    TeacherAdminRepository() throws SQLException {
         DbConnectionImp.closeConnection();
         this.sqlHandler = new SqlHandler(stringConnection);
-        createStudentTable();
+        createTeacherAdminTable();
     }
 
-    private String createStudentTable() throws SQLException {
+    private String createTeacherAdminTable() throws SQLException {
         List<String> sqlData = Arrays.asList(
-                "INTEGER PRIMARY KEY AUTOINCREMENT","TEXT NOT NULL","TEXT NOT NULL","TEXT NOT NULL"
+                "INTEGER PRIMARY KEY AUTOINCREMENT", "TEXT NOT NULL", "TEXT NOT NULL", "TEXT NOT NULL", "INTEGER NOT NULL"
         );
-        List<String> nameOfFields = ClassInfoExample.nameFields(new TeacherModel());
-        String sql =ClassInfoExample.generateSqlCommand(nameOfFields,sqlData);
-        System.out.println(sql);
+        List<String> nameOfFields = ClassInfoExample.nameFields(new TeacherAdminModel());
+        String sql = ClassInfoExample.generateSqlCommand(nameOfFields, sqlData);
         return sqlHandler.createTable(tableName, sql);
     }
 
-    public String addNweTeacher(TeacherModel teacherModel) {
+    public String addNweTeacherOrAdmin(TeacherAdminModel teacherAdminModel) {
         try {
-            if (findByWhere("userName", teacherModel.getUserName()) == null) {
-                String sqlQ = "null,\"%s\",\"%s\",\"%s\",false";
-                String sqlF = String.format(sqlQ,
-                        teacherModel.getName(),
-                        teacherModel.getPassword(),
-                        teacherModel.getUserName());
-                sqlHandler.insertData(tableName, sqlF);
-                return "Congratulation add new teacher";
-            }
-            return "userName is already exist";
+            sqlHandler.insertData(tableName, ClassInfoExample.getDataFromModel(teacherAdminModel));
+            return "Congratulation add new teacher";
         } catch (Exception e) {
             return e.getMessage();
         }
@@ -106,3 +99,5 @@ public class TeacherRepository {
         }
     }
 }
+
+
