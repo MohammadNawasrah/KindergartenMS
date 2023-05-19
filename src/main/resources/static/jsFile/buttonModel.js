@@ -12,8 +12,8 @@
           text.innerHTML = "الذهاب لرؤيه معلومات الطلاب";
         }
         if (number == 2) {
-          a.setAttribute("href", "delall");
-          text.innerHTML = "تأكيد عملية التهيئة";
+          a.setAttribute("href", "addNewTeacher");
+          text.innerHTML = "ستذهب لصفحه لاضافة معلم جديد";
         }
         if (number == 3) {
           a.setAttribute("href", "datadigram");

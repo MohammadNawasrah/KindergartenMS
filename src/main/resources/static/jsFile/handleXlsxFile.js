@@ -24,6 +24,7 @@
                 idCode: entry[3],
                 teacherId: entry[4],
               };
+
               console.log(payload);
               // Post the data to the specified URL
               fetch("http://kg.host/admin/addStudentPage", {

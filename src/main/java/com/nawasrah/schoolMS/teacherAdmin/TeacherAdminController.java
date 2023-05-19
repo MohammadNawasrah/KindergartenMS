@@ -34,8 +34,10 @@ public class TeacherAdminController {
         Boolean authenticatedUser = teacherService.login(username, password);
         if (authenticatedUser) {
             HttpSessionPage.setSession(session, ConstantData.userName, username);
+            HttpSessionPage.setSession(session, ConstantData.nameOfTeacher, teacherService.getNameOfTeacher(username));
             if (AdminService.isAdmin(password)) {
                 HttpSessionPage.setSession(session, ConstantData.admin, true);
+                redirectAttributes.addFlashAttribute( ConstantData.nameOfTeacher,HttpSessionPage.getSession(session,ConstantData.nameOfTeacher));
                 return RedirectTo.redirectTo("/admin/panel");
             }
             HttpSessionPage.setSession(session, ConstantData.admin, false);
